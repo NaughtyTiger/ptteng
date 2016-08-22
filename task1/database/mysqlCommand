@@ -1,0 +1,29 @@
+root:
+insert into mysql.user(Host,User,Password) values ("localhost","lzhang",password("123456"));
+flush privileges;
+create database pttengDB;
+grant all privileges on pttengDB.* to lzhang@localhost;
+
+lzhang:
+create table student ( id bigint primary key auto_increment, name char(30) not null, create_at datetime, update_at datetime);
+
+insert into student(name,create_at,update_at) values ("Kobe Bryant",now(),now());
+insert into student(name,create_at,update_at) values ("Pau Gasol",now(),now());
+insert into student(name,create_at,update_at) values ("Andrew Bynum",now(),now());
+insert into student(name,create_at,update_at) values ("Lamar Odom",now(),now());
+insert into student(name,create_at,update_at) values ("Ron Artest",now(),now());
+insert into student(name,create_at,update_at) values ("Luke Walton",now(),now());
+insert into student(name,create_at,update_at) values ("Steve Blake",now(),now());
+
+mysql> select * from student;
++----+--------------+---------------------+---------------------+
+| id | name         | create_at           | update_at           |
++----+--------------+---------------------+---------------------+
+|  1 | Kobe Bryant  | 2016-08-19 17:29:58 | 2016-08-19 17:29:58 |
+|  2 | Pau Gasol    | 2016-08-19 17:30:13 | 2016-08-19 17:30:13 |
+|  3 | Andrew Bynum | 2016-08-19 17:30:35 | 2016-08-19 17:30:35 |
+|  4 | Lamar Odom   | 2016-08-19 17:30:51 | 2016-08-19 17:30:51 |
+|  5 | Ron Artest   | 2016-08-19 17:31:04 | 2016-08-19 17:31:04 |
+|  6 | Luke Walton  | 2016-08-19 17:31:17 | 2016-08-19 17:31:17 |
+|  7 | Steve Blake  | 2016-08-19 17:31:30 | 2016-08-19 17:31:30 |
++----+--------------+---------------------+---------------------+
