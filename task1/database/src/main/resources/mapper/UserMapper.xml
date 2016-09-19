@@ -8,4 +8,16 @@
 	useGeneratedKeys="true" keyProperty="id">
 		insert into student(name, create_at, update_at) values (#{name},now(),now());
 	</insert>
+	
+	<resultMap type="com.ptteng.model.User" id="userMap">
+		<id column="id" property="id"></id>
+		<id column="name" property="name"></id>
+		<id column="createTime" property="create_at"></id>
+		<id column="updateTime" property="update_at"></id>
+	</resultMap>
+	
+	<!-- it seems #{id} can be anything -->
+	<select id="selectUserById" resultMap="userMap" parameterType="Integer">
+		select * from student where id = #{id}
+	</select>
 </mapper>

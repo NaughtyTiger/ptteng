@@ -1,6 +1,9 @@
 package com.ptteng;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -19,13 +22,20 @@ public class UserTest {
     userService=(UserService) context.getBean("userServiceImpl");
   }
   
+  @Ignore
   @Test
   public void addUser(){
     User user=new User();
-    user.name="Shawn Marion";
-    System.out.println(user.id);
+    user.setName("Shawn Marion");
     System.out.println(userService.insertUser(user));
-    System.out.println(user.id);
+    System.out.println(user.getId());
+    System.out.println(user.getCreateTime());
+  }
+  
+  @Test
+  public void selectUserById(){
+    User user=userService.selectUserById(5);
+    assertEquals("Ron Artest",user.getName());
   }
 
 }
