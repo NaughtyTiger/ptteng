@@ -2,7 +2,7 @@ package com.ptteng;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -11,25 +11,26 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.ptteng.model.User;
 import com.ptteng.service.UserService;
 
-public class UserTest {
-  private UserService userService;
+public class UserServiceTest {
+  private static UserService userService;
   
-  @Before
-  public void setup(){
+  @BeforeClass
+  public static void setup(){
     @SuppressWarnings("resource")
     ApplicationContext context=new ClassPathXmlApplicationContext(
         new String[]{"classpath:spring.xml", "classpath:spring-mybatis.xml"});
     userService=(UserService) context.getBean("userServiceImpl");
   }
   
-  @Ignore
   @Test
   public void addUser(){
+    int numberBefore=userService.countUsers();
     User user=new User();
     user.setName("Shawn Marion");
-    System.out.println(userService.insertUser(user));
-    System.out.println(user.getId());
-    System.out.println(user.getCreateTime());
+    userService.insertUser(user);
+    //TODO time assert
+    int numberAfter=userService.countUsers();
+    assertEquals(numberBefore, numberAfter-1);
   }
   
   @Test
@@ -38,4 +39,10 @@ public class UserTest {
     assertEquals("Ron Artest",user.getName());
   }
 
+  @Test
+  public void selectUser(){
+    User users[]=userService.selectUsers();
+    assertEquals(userService.countUsers(), users.length);
+  }
+  
 }

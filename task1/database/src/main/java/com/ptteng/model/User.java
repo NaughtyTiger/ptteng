@@ -5,17 +5,27 @@ import java.sql.Timestamp;
 public class User {
   private int id;
   private String name;
-  private Timestamp createTime;
-  private Timestamp updateTime;
+  private Timestamp create_at;
+  private Timestamp update_at;
+  
+//  @Override
+//  public User clone(){
+//    User newone=new User();
+//    newone.id=id;
+//    newone.name=name;
+//    newone.createTime=createTime;
+//    newone.updateTime=updateTime;
+//    return newone;
+//  }
   
   @Override
-  public User clone(){
-    User newone=new User();
-    newone.id=id;
-    newone.name=name;
-    newone.createTime=createTime;
-    newone.updateTime=updateTime;
-    return newone;
+  public String toString(){
+    String result=null;
+    result+="id:"+id;
+    result+=" name:"+name;
+    result+=" create at:"+create_at;
+    result+=" update at:"+update_at;
+    return result;
   }
   
   public int getId(){
@@ -37,21 +47,21 @@ public class User {
    */
   public void setCreateTime(Timestamp createTime){
     if (createTime==null){
-      this.createTime=createTime;
+      this.create_at=createTime;
     } else {
       throw new IllegalStateException();
     }
   }
   
   public Timestamp getCreateTime(){
-    return createTime;
+    return create_at;
   }
   
   public void setUpdateTime(Timestamp updateTime){
-    this.updateTime=updateTime;
+    this.update_at=updateTime;
   }
   
   public Timestamp getUpdataTime(){
-    return updateTime;
+    return update_at;
   }
 }

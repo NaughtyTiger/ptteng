@@ -4,6 +4,12 @@ import com.ptteng.model.User;
 
 public interface UserDAO {
   /**
+   * return the number of users in TABLE student
+   * @return
+   */
+  public int countUsers();
+  
+  /**
    * insert a new user into TABLE student
    * @param user
    * @return
@@ -16,4 +22,10 @@ public interface UserDAO {
    * @return
    */
   public User selectUserById(int id);
+  
+  /**
+   * select all user from TABLE student
+   * @return
+   */
+  public User[] selectUsers();
 }
