@@ -37,7 +37,6 @@ public class UserServiceImpl implements UserService {
     int result=userDAO.insertUser(user);
     logger.info("A user whose name is "+user.getName()+" is inserted.");
     User newuser=userDAO.selectUserById(user.getId());
-    user.setName(newuser.getName());
     user.setCreateTime(newuser.getCreateTime());
     user.setUpdateTime(newuser.getUpdataTime());
     logger.debug("user info:"+user);

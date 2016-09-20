@@ -46,7 +46,7 @@ public class User {
    * @throws IllegalStateException
    */
   public void setCreateTime(Timestamp createTime){
-    if (createTime==null){
+    if (this.create_at==null){
       this.create_at=createTime;
     } else {
       throw new IllegalStateException();
